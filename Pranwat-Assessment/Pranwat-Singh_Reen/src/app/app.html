@@ -1,7 +1,5 @@
 <div class="min-h-screen flex justify-center items-center bg-gray-50">
-
   <div class="w-96 bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col gap-5">
-
     <h2 class="text-2xl font-bold text-center">
       Login to Your Account
     </h2>
@@ -15,7 +13,6 @@
       id="username"
       (valueChange)="username = $event"
     />
-
     <app-input
       label="Password"
       type="password"
@@ -23,24 +20,14 @@
       id="password"
       (valueChange)="password = $event"
     />
-
     @if (loginError) {
       <p class="text-sm text-red-600" role="alert">{{ loginError }}</p>
     }
-
-    <div class="flex items-center gap-2">
-      <input type="checkbox" id="remember" />
-
-      <label for="remember" class="text-gray-500">
-        Remember Me
-      </label>
-
-      <app-button
-        class="ml-auto"
-        label="Login"
-        type="button"
-        (clicked)="login()"
-      />
-    </div>
+    <app-button
+      class="block w-full"
+      label="Login"
+      type="button"
+      (clicked)="login()"
+    />
   </div>
 </div>
