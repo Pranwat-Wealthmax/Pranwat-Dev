@@ -1,3 +1,7 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { Navbar } from './navbar/navbar';
+export const routes: Routes = [
+  { path: '', component: Navbar },
+  { path: 'home', component: Navbar },
+  { path: '**', redirectTo: '' }
+];

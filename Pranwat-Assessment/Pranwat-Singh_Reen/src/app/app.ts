@@ -1,41 +1,27 @@
-
-import { Component } from '@angular/core';
-
-import { InputComponent } from './shared/input/input';
+import { Component, signal } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ButtonComponent } from './shared/button/button';
-import { Navbar } from './navbar/navbar';
-
-import {
-  checkPasswordStrength,
-  isPasswordValid,
-  PasswordStrength
-} from './utils/password-validator';
+import { InputComponent } from './shared/input/input';
 
 @Component({
   selector: 'app-root',
-  imports: [InputComponent, ButtonComponent, Navbar],
+  imports: [ButtonComponent, InputComponent],
   templateUrl: './app.html'
 })
 export class App {
-
+  username = '';
   password = '';
+  loginError = '';
+  login(): void {
+    if (this.username === 'Admin' && this.password === 'Password123') {
+      this.openDashboard();
+      return;
+    }
 
-  passwordStrength: PasswordStrength =
-    checkPasswordStrength('');
-
-  updatePassword(value: string): void {
-
-    this.password = value;
-
-    this.passwordStrength =
-      checkPasswordStrength(value);
-
+    this.loginError = 'Username or password is incorrect.';
   }
 
-  get isValidPassword(): boolean {
-
-    return isPasswordValid(this.password);
-
+  openDashboard(): void {
+    window.location.href = '/dashboard.html';
   }
-
 }
