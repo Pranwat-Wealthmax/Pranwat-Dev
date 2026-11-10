@@ -12,15 +12,14 @@ export class App {
   username = '';
   password = '';
   loginError = '';
+  passwordVisible = false;
   login(): void {
     if (this.username === 'Admin' && this.password === 'Password123') {
       this.openDashboard();
       return;
     }
-
     this.loginError = 'Username or password is incorrect.';
   }
-
   openDashboard(): void {
     window.location.href = '/dashboard.html';
   }
