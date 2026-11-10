@@ -1,4 +1,6 @@
 
+<app-navbar></app-navbar>
+
 <div class="min-h-screen flex justify-center items-center bg-gray-50">
 
   <div class="w-96 bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col gap-5">
@@ -7,6 +9,7 @@
       Register Your Account
     </h2>
 
+    <!-- Username -->
     <app-input
       label="Username"
       type="text"
@@ -14,25 +17,67 @@
       id="username"
     />
 
+    <!-- Password -->
     <app-input
       label="Password"
       type="password"
       placeholder="Enter password"
       id="password"
-    />
-    <app-input
-      label="Re-Password"
-      type="password"
-      placeholder="Re-Enter password"
-      id="password"
+      (valueChange)="updatePassword($event)"
     />
 
+    <!-- Password Requirements -->
+    <div class="flex flex-col gap-2 text-sm">
+
+      <p
+        [class.text-green-600]="passwordStrength.minLength"
+        [class.text-red-500]="!passwordStrength.minLength">
+        ✓ At least 8 characters
+      </p>
+
+      <p
+        [class.text-green-600]="passwordStrength.hasLowercase"
+        [class.text-red-500]="!passwordStrength.hasLowercase">
+        ✓ One lowercase letter
+      </p>
+
+      <p
+        [class.text-green-600]="passwordStrength.hasUppercase"
+        [class.text-red-500]="!passwordStrength.hasUppercase">
+        ✓ One uppercase letter
+      </p>
+
+      <p
+        [class.text-green-600]="passwordStrength.hasSpecialChar"
+        [class.text-red-500]="!passwordStrength.hasSpecialChar">
+        ✓ One special character
+      </p>
+
+      <p
+        [class.text-green-600]="passwordStrength.hasNumber"
+        [class.text-red-500]="!passwordStrength.hasNumber">
+        ✓ One number
+      </p>
+
+    </div>
+
+    <!-- Remember Me and Button -->
     <div class="flex items-center gap-2">
+
       <input type="checkbox" id="remember" />
+
       <label for="remember" class="text-gray-500">
         Remember Me
       </label>
-      <app-button class="ml-auto" label="Sign Up" type="submit" />
+
+      <app-button
+        class="ml-auto"
+        label="Login"
+        type="submit"
+        [disabled]="!isValidPassword"
+      />
+
     </div>
+
   </div>
 </div>

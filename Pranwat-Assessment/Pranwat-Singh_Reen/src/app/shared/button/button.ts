@@ -1,3 +1,4 @@
+
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,6 +9,9 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
 
   @Input() label: string = 'Button';
+
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+
+  @Input() disabled: boolean = false;
 
 }
