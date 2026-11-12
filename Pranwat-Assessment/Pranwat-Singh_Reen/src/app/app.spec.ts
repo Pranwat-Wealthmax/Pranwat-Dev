@@ -16,11 +16,11 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render the OTP route by default', async () => {
+  it('should render the login route by default', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     await fixture.whenStable();
 
-    expect((fixture.nativeElement as HTMLElement).querySelector('app-verification-page')).not.toBeNull();
+    expect((fixture.nativeElement as HTMLElement).querySelector('app-login-page')).not.toBeNull();
   });
 });

@@ -24,7 +24,6 @@ export class LoginPage {
 
     this.loginError = 'Username or password is incorrect.';
   }
-
   openDashboard(): void {
     void this.router.navigateByUrl('/dashboard.html');
   }
