@@ -1,0 +1,70 @@
+<main class="flex min-h-screen w-full bg-[#f4f6fa]">
+  <aside
+    class="relative hidden min-h-screen w-[30%] shrink-0 overflow-hidden bg-gradient-to-br from-[#39329b] via-[#4138b8] to-[#343090] md:block"
+    aria-hidden="true"
+  >
+    <div class="absolute -bottom-[240px] -right-[125px] h-[580px] w-[580px] rounded-full border-[20px] border-indigo-200/25">
+      <div class="absolute -inset-[22px] rounded-full border-[20px] border-indigo-200/15">
+        <div class="absolute -inset-[26px] rounded-full border-[20px] border-indigo-200/10"></div>
+      </div>
+    </div>
+    <div class="absolute left-[28%] top-[44%] h-5 w-5 rounded-full bg-orange-300 blur-md shadow-[0_0_24px_12px_rgba(255,154,85,0.45)]"></div>
+    <div class="absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-orange-400/90"></div>
+    <div class="absolute -bottom-10 -right-10 h-24 w-24 rounded-full bg-cyan-300/90"></div>
+  </aside>
+
+  <section class="flex min-w-0 flex-1 items-center justify-center bg-[#f4f6fa] p-[22px] sm:p-9">
+    <div class="w-full max-w-[542px] rounded-[13px] bg-white px-[22px] py-[34px] text-center shadow-[0_12px_25px_rgba(35,54,91,0.08)] sm:px-[38px] sm:pb-[38px] sm:pt-[42px]">
+      <h1 class="mb-[17px] text-[clamp(22px,2.1vw,32px)] font-bold leading-tight text-[#1b1b1b]">
+        Please Enter the verification code
+      </h1>
+      <p class="m-0 text-[15px] leading-[1.6] text-[#596c8c]">
+        An email containing a 6-digit verification code has been sent to
+      </p>
+      <p class="mb-8 mt-0.5 text-[15px] leading-[1.6]">
+        <span class="text-[#f04f17]">Admin@gmail.com</span>
+        <span class="ml-[5px] text-[#1762f5] underline underline-offset-2">change email</span>
+      </p>
+      <p class="mb-[30px] mt-0 text-sm text-[#e82720]">OTP expires in 02:12</p>
+
+      <form id="verification-form" novalidate (submit)="verify($event)">
+        <div class="mb-[29px] flex items-center justify-center gap-[7px] max-[390px]:gap-1" role="group" aria-label="Six-digit verification code">
+          @for (digit of digits; track $index) {
+            <input
+              #codeInput
+              type="text"
+              inputmode="numeric"
+              maxlength="1"
+              [value]="digit"
+              [attr.aria-label]="'Digit ' + ($index + 1)"
+              [attr.autocomplete]="$index === 0 ? 'one-time-code' : null"
+              [autofocus]="$index === 0"
+              (input)="onDigitInput($event, $index)"
+              (keydown)="onDigitKeydown($event, $index)"
+              (paste)="onPaste($event, $index)"
+              class="h-[41px] w-10 rounded-[7px] border border-[#e3e8f0] bg-white p-0 text-center text-xl text-[#182238] outline-none focus:border-2 focus:border-[#6258ff] max-[390px]:h-[38px] max-[390px]:w-[35px]"
+            />
+            @if ($index === 2) {
+              <span class="mx-0.5 text-lg text-[#65728a]" aria-hidden="true">-</span>
+            }
+          }
+        </div>
+
+        <button
+          class="h-10 w-full rounded-md border text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:border-[#e0e0e0] disabled:bg-[#fafafa] disabled:text-[#c9c9c9] enabled:cursor-pointer enabled:border-indigo-600 enabled:bg-indigo-600 enabled:text-white enabled:hover:bg-indigo-700"
+          type="submit"
+          [disabled]="!canVerify"
+        >
+          Verify
+        </button>
+        @if (feedback) {
+          <p class="mb-0 mt-3 text-sm text-red-600" role="alert">{{ feedback }}</p>
+        }
+      </form>
+
+      <p class="mb-0 mt-[31px] text-sm text-[#34425c]">
+        Didn’t receive the code? <span class="text-[#1762f5]">Resend code in 00:12</span>
+      </p>
+    </div>
+  </section>
+</main>
