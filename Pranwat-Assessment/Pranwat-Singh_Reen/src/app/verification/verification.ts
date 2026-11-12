@@ -39,27 +39,6 @@ export class VerificationPage {
     }
   }
 
-  onPaste(event: ClipboardEvent, index: number): void {
-    const pastedDigits = event.clipboardData?.getData('text').replace(/\D/g, '') ?? '';
-    if (!pastedDigits) {
-      return;
-    }
-
-    event.preventDefault();
-    pastedDigits.slice(0, this.digits.length - index).split('').forEach((digit, offset) => {
-      const targetIndex = index + offset;
-      this.digits[targetIndex] = digit;
-      const input = this.codeInputs.get(targetIndex)?.nativeElement;
-      if (input) {
-        input.value = digit;
-      }
-    });
-
-    const focusIndex = Math.min(index + pastedDigits.length, this.digits.length - 1);
-    this.codeInputs.get(focusIndex)?.nativeElement.focus();
-    this.feedback = '';
-  }
-
   verify(event: Event): void {
     event.preventDefault();
     if (!this.canVerify) {

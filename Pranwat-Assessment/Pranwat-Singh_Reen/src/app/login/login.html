@@ -3,7 +3,7 @@
     <img src="/image.png" alt="Background Here" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover"/>
   </aside>
   <section class="flex flex-1 items-center justify-center px-5 py-10 sm:px-8">
-    <div class="w-full max-w-102.5 rounded-xl bg-white px-7 py-9 shadow-[0_12px_30px_rgba(30,41,59,0.08)] sm:px-8">
+    <div class="min-h-[470px] w-full max-w-135.5 rounded-xl bg-white px-[22px] py-[34px] shadow-[0_12px_30px_rgba(30,41,59,0.08)] sm:px-[38px] sm:pb-[38px] sm:pt-[42px]">
       <header class="mb-7 text-center">
         <h1 class="text-2xl font-bold tracking-tight text-slate-900">Login</h1>
         <p class="mt-1.5 text-xs text-slate-500">Please Enter your Username and Password to get access to your account</p>
@@ -39,6 +39,9 @@
             </button>
           </div>
         </div>
+        <div class="mt-8 text-center text-md text-[#34425c]">
+        © 2026 Pranwat Singh Reen . All rights reserved.
+      </div>
 
         @if (loginError) {
           <p class="-mt-2 text-sm text-red-600" role="alert">{{ loginError }}</p>
@@ -50,5 +53,6 @@
         />
       </form>
     </div>
+  
   </section>
 </main>
